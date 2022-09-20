@@ -1,3 +1,7 @@
 "use strict";
 
-var aula = require("./aula4.js");
+var processos = require("./aula4.js");
+/*
+processos.minhaConsola.log("via index");
+processos.minhaConsola.error("via index");
+*/
