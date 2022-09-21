@@ -19,6 +19,7 @@ res(response) - Resposta que o servidor vai dar ao cliente
 // Método write - Escreve no corpo da resposta do servidor ao pedido
 // Método end - Sinaliza ao servidor que todos os cabeçalhos e corpo da resposta foram enviados
 
+/*
 http.createServer(function(req,res){
     res.write('<html>' + 
     '<head>' + 
@@ -28,5 +29,20 @@ http.createServer(function(req,res){
     '<span>Ola thanks for req</span>' + 
     '</body>' + 
     '</html>');
+    res.end();
+}).listen(3000);
+*/
+
+var pessoas = [
+    {nome: 'Sergio', idade: 40},
+    {nome: 'Ana', idade: 30},
+    {nome: 'Rui', idade: 20},
+    {nome: 'Maria', idade: 10}
+];
+
+// Método JSON.stringify - Converte um objeto em string
+
+http.createServer(function(req,res){
+    res.write(JSON.stringify(pessoas));
     res.end();
 }).listen(3000);
