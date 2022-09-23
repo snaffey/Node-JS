@@ -85,15 +85,15 @@ http://localhost:3000/pessoas
 http://localhost:3000/cursos
 */
 
-var request = require('./request');
+var request = require('./request'); // Importar o módulo request.js
 
-var app = request(1212);
+var app = request(1212); // Iniciar o servidor na porta 1212
 
-app.get('/pessoas', function(req, res){
-    res.write(JSON.stringify(pessoas));
-    res.end();
+app.get('/pessoas', function(req, res){ // Criar uma rota para pessoas
+    res.write(JSON.stringify(pessoas)); // Escrever no corpo da resposta
+    res.end(); 
 });
-app.get('/cursos', function(req, res){
-    res.write(JSON.stringify(cursos));
+app.get('/cursos', function(req, res){ // Criar uma rota para cursos
+    res.write(JSON.stringify(cursos)); // Escrever no corpo da resposta
     res.end();
 });
