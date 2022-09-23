@@ -33,16 +33,67 @@ http.createServer(function(req,res){
 }).listen(3000);
 */
 
-var pessoas = [
+/*var pessoas = [
     {nome: 'Sergio', idade: 40},
     {nome: 'Ana', idade: 30},
     {nome: 'Rui', idade: 20},
     {nome: 'Maria', idade: 10}
-];
+];*/
 
 // Método JSON.stringify - Converte um objeto em string
-
+/*
 http.createServer(function(req,res){
+    res.setHeader('Access-Control-Allow-Origin', '*'); // * - Todos os domínios podem aceder ao servidor
     res.write(JSON.stringify(pessoas));
     res.end();
 }).listen(3000);
+*/
+
+// Exemplo 2
+
+var pessoas = [
+    {nome: 'Sergio', idade: 40, salário: 1000},
+    {nome: 'Ana', idade: 30, salário: 2000},
+    {nome: 'Rui', idade: 20, salário: 3000},
+    {nome: 'Maria', idade: 10, salário: 4000}
+];
+
+var cursos = [
+    {nome: 'Programação', duração: 10, local: 'Funchal', cursta: 5000},
+    {nome: 'Bases de Dados', duração: 20, local: 'Porto Santo', cursta: 6000},
+    {nome: 'Redes', duração: 30, local: 'Porto Moniz', cursta: 7000},
+];
+
+var erro = {erro: 'Não foi possível obter os dados'};
+
+// Controlar propriedades, req.url indica o valor que foi passado na requisição
+/*
+http.createServer(function(req,res){
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    console.log("REQ.url" + req.url);
+    if(req.url == '/pessoas')
+        res.write(JSON.stringify(pessoas));
+    else if(req.url == '/cursos')
+        res.write(JSON.stringify(cursos));
+    else
+        res.write(JSON.stringify(erro));
+    res.end();
+}).listen(3000);
+*/
+/* Testar as rotas
+http://localhost:3000/pessoas
+http://localhost:3000/cursos
+*/
+
+var request = require('./request');
+
+var app = request(1212);
+
+app.get('/pessoas', function(req, res){
+    res.write(JSON.stringify(pessoas));
+    res.end();
+});
+app.get('/cursos', function(req, res){
+    res.write(JSON.stringify(cursos));
+    res.end();
+});
