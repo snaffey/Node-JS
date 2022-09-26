@@ -97,3 +97,12 @@ app.get('/cursos', function(req, res){ // Criar uma rota para cursos
     res.write(JSON.stringify(cursos)); // Escrever no corpo da resposta
     res.end();
 });
+
+app.post('/pessoas', function(req, res){ // Criar uma rota para pessoas
+    res.write(JSON.stringify(pessoas)); // Escrever no corpo da resposta
+    res.end(); 
+});
+app.post('/cursos', function(req, res){ // Criar uma rota para cursos
+    res.write(JSON.stringify(cursos)); // Escrever no corpo da resposta
+    res.end();
+});
