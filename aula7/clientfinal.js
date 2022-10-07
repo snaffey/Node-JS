@@ -1,4 +1,5 @@
 var net = require('net');
+var ajuda = require('./ajuda.js');
 
 var client = net.connect(1213);
 
@@ -10,7 +11,12 @@ const rl = readline.createInterface({
 });
 
 client.on('connect', function(msg) {
-    console.log('sou um cliente');
+    console.log('Client');
+
+    // Sair depois de 2 minutos
+    setTimeout(function() {
+        client.end();
+    }, 20000);
 });
 
 client.on('data', function(msg) {
@@ -18,7 +24,7 @@ client.on('data', function(msg) {
 });
 
 client.on('end',function() {
-    console.log('desconectado');
+    console.log('Desconectado');
     process.exit();
 });
 
@@ -29,6 +35,10 @@ rl.on('line', (input) => {
 });
 
 function show(m) {
-    console.log('ME:'+ m);
+    if (m == '#help') {
+        ajuda.mostrarAjuda();
+    }
+
+    console.log('ME: '+ m);
     client.write(`${m}`);
 }

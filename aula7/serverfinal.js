@@ -20,11 +20,15 @@ net.createServer(function(con) {
             broadcast(con.nome + ' é ' + nome)
             con.nome = nome;
             return;
+        } else if(comando.indexOf('#help') == 0) {
+            var ajuda = require('./ajuda.js');
+            ajuda.mostrarAjuda();
+            return;
         }
-        console.log('con'+ con.nome);
+        console.log('con -> '+ con.nome);
         broadcast(con.nome + ' -> ' + msg, con);
     });
-
+    
     con.on('end', function() {
         broadcast(con.nome + ' saiu do chat', con);
         // splice (remover conexão pos, qt)
